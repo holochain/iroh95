@@ -21,7 +21,6 @@ crate-type = ["lib", "cdylib"]
 workspace = true
 
 [dependencies]
-aead = { version = "=0.6.0-rc.2", features = ["bytes"] }
 backon = { version = "1.4" }
 bytes = "1.7"
 crypto_box = { version = "0.10.0-pre.0", features = ["serde", "chacha20"] }

@@ -22,7 +22,6 @@ version = "0.6.0-rc.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ac8202ab55fcbf46ca829833f347a82a2a4ce0596f0304ac322c2d100030cd56"
 dependencies = [
- "bytes",
  "crypto-common",
  "inout",
 ]
@@ -2117,7 +2116,6 @@ dependencies = [
 name = "iroh"
 version = "0.95.1"
 dependencies = [
- "aead",
  "axum",
  "backon",
  "bytes",

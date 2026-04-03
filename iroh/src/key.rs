@@ -2,7 +2,7 @@
 
 use std::fmt::Debug;
 
-use aead::{AeadCore, AeadInOut, Buffer};
+use crypto_box::aead::{AeadCore, AeadInOut, Buffer};
 use iroh_base::{PublicKey, SecretKey};
 use n0_error::{e, ensure, stack_error};
 
@@ -34,7 +34,7 @@ pub enum DecryptionError {
     #[error("Aead error")]
     Aead {
         #[error(std_err)]
-        source: aead::Error,
+        source: crypto_box::aead::Error,
     },
 }
 
