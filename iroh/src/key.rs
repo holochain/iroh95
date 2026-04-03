@@ -2,7 +2,7 @@
 
 use std::fmt::Debug;
 
-use crypto_box::aead::{AeadCore, AeadInOut, Buffer};
+use crypto_box::aead::{AeadInOut, Buffer};
 use iroh_base::{PublicKey, SecretKey};
 use n0_error::{e, ensure, stack_error};
 
@@ -51,8 +51,8 @@ impl SharedSecret {
 
     /// Seals the provided cleartext.
     pub fn seal(&self, buffer: &mut dyn Buffer) {
-        let nonce = crypto_box::ChaChaBox::try_generate_nonce_with_rng(&mut rand::rng())
-            .expect("not enough randomness");
+        let nonce: [u8; NONCE_LEN] = rand::random();
+        let nonce = nonce.into();
 
         self.0
             .encrypt_in_place(&nonce, AEAD_DATA, buffer)
