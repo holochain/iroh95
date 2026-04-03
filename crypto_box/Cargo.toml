@@ -99,6 +99,7 @@ optional = true
 
 [dependencies.crypto_secretbox]
 version = ">=0.2.0-pre.0"
+path = "../crypto_secretbox"
 default-features = false
 
 [dependencies.curve25519-dalek]
