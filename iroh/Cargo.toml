@@ -23,11 +23,7 @@ workspace = true
 [dependencies]
 backon = { version = "1.4" }
 bytes = "1.7"
-crypto_box = { version = "0.10.0-pre.0", default-features = false, features = ["serde", "chacha20", "alloc", "rand_core"] }
-# Pin pre-release crypto deps to prevent cargo from unifying them with
-# incompatible stable releases (e.g. universal-hash 0.6.0-rc.2 vs 0.6.1).
-crypto-common = "=0.2.0-rc.4"
-universal-hash = "=0.6.0-rc.2"
+crypto_box = { version = "0.10.0-pre.0", path = "../crypto_box", default-features = false, features = ["serde", "chacha20", "alloc", "rand_core"] }
 data-encoding = "2.2"
 derive_more = { version = "2.0.1", features = [
     "debug",

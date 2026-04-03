@@ -1,0 +1,55 @@
+[package]
+name = "crypto_box"
+version = "0.10.0-pre.0"
+description = """
+Pure Rust implementation of NaCl's crypto_box public-key authenticated
+encryption primitive which combines the X25519 Elliptic Curve Diffie-Hellman
+function and the XSalsa20Poly1305 authenticated encryption cipher
+"""
+authors = ["RustCrypto Developers"]
+license = "Apache-2.0 OR MIT"
+readme = "README.md"
+documentation = "https://docs.rs/crypto_box"
+homepage = "https://github.com/RustCrypto/nacl-compat/tree/master/crypto_box"
+repository = "https://github.com/RustCrypto/nacl-compat"
+categories = ["cryptography", "no-std"]
+keywords = ["nacl", "libsodium", "public-key", "x25519", "xsalsa20poly1305"]
+edition = "2021"
+rust-version = "1.85"
+
+[dependencies]
+aead = { version = "0.6.0-rc.2", default-features = false }
+crypto_secretbox = { version = "=0.2.0-pre.0", default-features = false, path = "../crypto_secretbox" }
+curve25519-dalek = { version = "=5.0.0-pre.1", default-features = false, features = ["zeroize"] }
+subtle = { version = "2", default-features = false }
+zeroize = { version = "1", default-features = false }
+
+# optional dependencies
+chacha20 = { version = "0.10.0-rc.2", optional = true }
+blake2 = { version = "0.11.0-rc.2", optional = true, default-features = false }
+salsa20 = { version = "0.11.0-rc.1", optional = true }
+serdect = { version = "0.4", optional = true, default-features = false }
+
+[dev-dependencies]
+bincode = "1"
+hex-literal = "0.4"
+rand = "0.9"
+rmp-serde = "1"
+ed25519-dalek = { version = "3.0.0-pre.1", features = ["rand_core"] }
+
+[features]
+default = ["alloc", "os_rng", "rand_core", "salsa20"]
+alloc = ["aead/alloc"]
+std = ["alloc"]
+
+os_rng = ["aead/os_rng"]
+chacha20 = ["dep:chacha20", "crypto_secretbox/chacha20"]
+heapless = ["aead/heapless"]
+rand_core = ["aead/rand_core"]
+salsa20 = ["dep:salsa20", "crypto_secretbox/salsa20"]
+seal = ["dep:blake2", "alloc"]
+serde = ["dep:serdect"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

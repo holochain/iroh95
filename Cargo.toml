@@ -8,6 +8,10 @@ members = [
 ]
 resolver = "2"
 
+[patch.crates-io]
+crypto_secretbox = { path = "crypto_secretbox" }
+crypto_box = { path = "crypto_box" }
+
 [profile.release]
 debug = true
 
